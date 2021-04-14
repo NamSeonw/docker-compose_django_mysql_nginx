@@ -28,3 +28,14 @@ source venv/bin/activate
 cd main
 
 pip install -r requirements.txt
+
+
+----------------------------------------
+
+docker-compose yml에 depend on 옵션을 설정해 주더라도
+
+container 실행 순서만 그에 따름으로 django를 올릴때 
+
+database check 로직을 실행 시켜야 한다.
+
+
