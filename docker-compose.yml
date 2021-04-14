@@ -1,0 +1,49 @@
+version: "2.1"
+
+services:
+
+  mysql:
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: "0000"
+      MYSQL_DATABASE: "test"
+      MYSQL_USER: "admin"
+      MYSQL_PASSWORD: "0000"
+    image: mysql:5.7
+    networks:
+      - default 
+    ports:
+      - "3306:3306"
+    volumes:
+      - /Users/nsw/workspace/docker_test/data:/var/lib/mysql
+
+  django:
+    container_name: django.test
+    depends_on:
+      - mysql
+    stdin_open: true
+    image: django.test
+    networks:
+      - default
+    links:
+      - "mysql:db" 
+    command: bash -c 'python3 /check_db --service-name mysql --ip db --port 3306 && cd /root/workspace/koa_management && source venv/bin/activate && python3 manage.py runserver 0.0.0.0:8000'
+    depends_on :
+      - mysql
+    ports:
+      - "8000:8000"
+#    expose:
+#      - "8000"
+
+  nginx:
+    image: nginx:1.18
+    container_name : nginx.test
+    volumes:
+      - /Users/nsw/workspace/docker_test/nginx:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+    networks:
+      - default
+    depends_on : 
+      - django
