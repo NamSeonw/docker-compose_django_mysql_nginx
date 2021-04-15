@@ -1,4 +1,4 @@
-version: "2.1"
+version: "3.6"
 
 services:
 
@@ -26,9 +26,9 @@ services:
     image: django.test
     networks:
       - default
-    links:
-      - "mysql:db" 
-    command: bash -c 'python3 /check_db --service-name mysql --ip db --port 3306 && cd /root/workspace/koa_management && source venv/bin/activate && python3 manage.py runserver 0.0.0.0:8000'
+#    links:
+#      - "mysql:db" 
+    command: bash -c 'cd /root/workspace/koa_management && source venv/bin/activate && python3 manage.py runserver 0.0.0.0:8000'
     depends_on :
       - mysql
     ports:
