@@ -1,5 +1,9 @@
 # docker-compose_django_mysql_nginx
 
+처음 docker-compose.yml 에 image 는 docker-compose에서 지원해주는 이미지를 pull받아 사용하고 그 후에 
+변경사항이 있어 container 에 들어가 수정한 후에 commit을 한다면 docker-compose image에도 image를 변경해준다.
+
+
 --- ubuntu django setting ---
 
 apt-get update
