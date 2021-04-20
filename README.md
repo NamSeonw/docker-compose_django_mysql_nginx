@@ -34,15 +34,15 @@ cd main
 pip install -r requirements.txt
 ```
 
-----------------------------------------
+<hr/>
 
 docker-compose yml에 depend on 옵션을 설정해 주더라도
 
-container 실행 순서만 그에 따름으로 django를 올릴때 
+depend on은 container 실행 순서만 영향을 미친다. 그렇기 때문에 django를 올릴때 database check 로직을 실행하여
 
-database check 로직을 실행 시켜야 한다.
+database의 시작 여부를 먼저 파악해야만 한다.
 
-----------------------------------------
+<hr/>
 
 기존의 만들어 놨던 docker-compose.yml 파일로 swarm 구성하는법
 ( docker-compose와 다른점은 docker-compose는 yml에 지정한 container_name 으로 docker process가 생기지만 docker stack은 yml의 파일의 service 이름으로 지정한것에
