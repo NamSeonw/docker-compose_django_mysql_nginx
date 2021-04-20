@@ -62,7 +62,7 @@ docker stack deploy -c docker-compose.yml (stack_name)
 > swarm 은 하나의 stack ( pc ) 단위로 이루어져 있으며
 > 
 > stack은 service 로 구성되어있다.
-
+>
 >>ex)
 > 나는 django, mysql, nginx 를 하나로 합친 stack이 있는것 이고
 >> django, mysql, nginx는 하나하나 service 이다.
