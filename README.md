@@ -1,3 +1,4 @@
+
 # docker-compose_django_mysql_nginx
 
 처음 docker-compose.yml 에 image 는 docker-compose에서 지원해주는 이미지를 pull받아 사용하고 그 후에 
@@ -46,33 +47,30 @@ database의 시작 여부를 먼저 파악해야만 한다.
 
  > docker-compose와 다른점은 docker-compose는 yml에 지정한 container_name 으로 docker process가 생기지만 docker stack은 yml의 파일의 service 이름으로 지정한것에
  > stack name을 붙여 구성된다. 
-  
+ >
  > service_name = 'django' , stack_name = 'test_swarm' 이라면
  > process 는 test_swarm_dajngo.... 으로 구성된다.
  > service 는 test_swarm_django
-  
+ >
  > 따라서 django setting파일의 database구성이나 nginx conf파일을 그에 맞게 변경하여야 한다.
 
-docker_test폴더에서 
+### docker_test폴더에서 
+```
+docker swarm init
+docker stack deploy -c docker-compose.yml (stack_name)
+```
+> swarm 은 하나의 stack ( pc ) 단위로 이루어져 있으며
+> 
+> stack은 service 로 구성되어있다.
 
-- docker swarm init
-- docker stack deploy -c docker-compose.yml (stack_name)
+>>ex)
+> 나는 django, mysql, nginx 를 하나로 합친 stack이 있는것 이고
+>> django, mysql, nginx는 하나하나 service 이다.
 
-swarm 은 하나의 stack ( pc ) 단위로 이루어져 있으며
+- docker service ls (service 구성 보기)
 
-stack은 service 로 구성되어있다.
-
-ex) 
-나는 django, mysql, nginx 를 하나로 합친 stack이 있는것 이고
-django, mysql, nginx는 하나하나 service 이다.
-
-docker service ls (service 구성 보기)
-
---------------------------------------------
-
-django가 먼저 올라가 있는 상태에서 nginx 뒤늦게 구동되면
-
-nginx가 동작하지 않을수 있다.
-
-django를 다시 올려주면 해결된다....(다른 해결방안을 찾아 볼 것)
-
+>django가 먼저 올라가 있는 상태에서 nginx 뒤늦게 구동되면
+>
+>nginx가 동작하지 않을수 있다.
+>
+>django를 다시 올려주면 해결된다....(다른 해결방안을 찾아 볼 것)
