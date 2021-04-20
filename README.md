@@ -34,8 +34,6 @@ cd main
 pip install -r requirements.txt
 ```
 
-<hr/>
-
 docker-compose yml에 depend on 옵션을 설정해 주더라도
 
 depend on은 container 실행 순서만 영향을 미친다. 그렇기 때문에 django를 올릴때 database check 로직을 실행하여
@@ -44,16 +42,16 @@ database의 시작 여부를 먼저 파악해야만 한다.
 
 <hr/>
 
-기존의 만들어 놨던 docker-compose.yml 파일로 swarm 구성하는법
-( docker-compose와 다른점은 docker-compose는 yml에 지정한 container_name 으로 docker process가 생기지만 docker stack은 yml의 파일의 service 이름으로 지정한것에
-  stack name을 붙여 구성된다. 
+## 기존의 만들어 놨던 docker-compose.yml 파일로 swarm 구성하는법
+
+ > docker-compose와 다른점은 docker-compose는 yml에 지정한 container_name 으로 docker process가 생기지만 docker stack은 yml의 파일의 service 이름으로 지정한것에
+ > stack name을 붙여 구성된다. 
   
-  service_name = 'django' , stack_name = 'test_swarm' 이라면
-  process 는 test_swarm_dajngo.... 으로 구성된다.
-  service 는 test_swarm_django
+ > service_name = 'django' , stack_name = 'test_swarm' 이라면
+ > process 는 test_swarm_dajngo.... 으로 구성된다.
+ > service 는 test_swarm_django
   
-  따라서 django setting파일의 database구성이나 nginx conf파일을 그에 맞게 변경하여야 한다.
- )
+ > 따라서 django setting파일의 database구성이나 nginx conf파일을 그에 맞게 변경하여야 한다.
 
 docker_test폴더에서 
 
